@@ -4,8 +4,9 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 
-#define FILE "word"
+#define FILE "word.txt"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int fileNumberOfLines(string fileName){
         getline(fin, line);
         number++;
     }
+    return number;
     fin.close();
 
 }
@@ -37,6 +39,7 @@ string randomWord(string fileName){
 
     ifstream fin(fileName);
     string word;
+
     for (int i=0; i<wordNumber; i++){
         getline(fin, word);
     }
@@ -46,7 +49,7 @@ string randomWord(string fileName){
 
 string createWord(){
 
-    return randomWord();
+    return randomWord(FILE);
 
 }
 
