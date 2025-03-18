@@ -10,7 +10,13 @@ using namespace std;
 
 int main(int argv, char* args[]){
 
-    launch();
+    Graphics mainGraphic;
+    mainGraphic.init();
+
+    launch(mainGraphic);
+
+    mainGraphic.quit();
+
     return 0;
 
 }

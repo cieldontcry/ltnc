@@ -10,14 +10,11 @@
 
 using namespace std;
 
-void launch(){
-
-    Graphics mainGraphics;
-    mainGraphics.init();
+void launch(Graphics& mainGraphic){
 
     string word;
     string blankWord;
-    int badGuessCount;
+    int badGuessCount = 0;
 
     word = createWord();
     blankWord= creatBlankWord((int)word.length(), '-');
@@ -27,8 +24,8 @@ void launch(){
         char guess = guessWord();
         if (checkGuess(guess, word, blankWord) == 0){
             badGuessCount++;
-            draw(badGuessCount, mainGraphics);
-            mainGraphics.presentScene();
+            draw(badGuessCount, mainGraphic);
+            mainGraphic.presentScene();
         }
 
         else {
@@ -42,6 +39,7 @@ void launch(){
 
     }
     cout << "You lose" <<'\n';
+    cout << word <<'\n';
 
 }
 

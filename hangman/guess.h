@@ -9,7 +9,7 @@ char guessWord(){
 
 }
 
-int checkGuess(char guess, string word, string blankWord){
+int checkGuess(const char guess, const string word, const string blankWord){
 
     for (int i=0; i<(int)word.length(); i++){
         if (guess== word[i] && blankWord[i]=='-') return 1;
@@ -18,7 +18,7 @@ int checkGuess(char guess, string word, string blankWord){
 
 }
 
-void updateBlankWord(char guess, string word, string& blankWord){
+void updateBlankWord(const char guess, const string word, string& blankWord){
 
     for (int i=0; i<(int)blankWord.length(); i++){
         if (blankWord[i]=='-' && word[i]==guess) blankWord[i]=guess;
