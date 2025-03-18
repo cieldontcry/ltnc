@@ -32,6 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="create.h" />
+		<Unit filename="defs.h" />
+		<Unit filename="draw.h" />
+		<Unit filename="graphics.h" />
+		<Unit filename="guess.h" />
 		<Unit filename="launch.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />

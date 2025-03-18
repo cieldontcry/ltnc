@@ -60,7 +60,7 @@ struct Graphics {
         dest.x = x;
         dest.y = y;
         SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
-        SDL_RenderCopy(renderer, texture, NULL, &dest);
+        SDL_RenderCopy(renderer, texture, NULL, NULL);
     }
 
     void quit(){

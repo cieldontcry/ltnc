@@ -2,22 +2,23 @@
 #define _DRAW__H
 
 #include<iostream>
+#include<string>
+
+#include "graphics.h"
+#include "defs.h"
 
 using namespace std;
 
-void draw(int a){
+string findImage(int a){
 
-    cout <<"-------------"<<'\n';
-    cout <<"|           |"<<'\n';
-    if (a>=2) cout << "|           o"<<'\n';
-    else cout << "|" <<'\n';
-    if (a==3) cout << "|           |"<<'\n';
-    else if (a==4) cout << "|          /|"<<'\n';
-    else if (a>=5) cout << "|          /|\\"<<'\n';
-    else cout <<"|            "<<'\n';
-    if (a>=6) cout << "|          / ";
-    else cout << "|"<<'\n';
-    if (a==7) cout << "\\"<<'\n';
+    return "image\\hangman\\" + std::to_string(a) + ".jpg";
+
+}
+
+void draw(int a, Graphics& mainGraphics){
+
+    SDL_Texture* hangManImage = mainGraphics.loadTexture(findImage(a).c_str());
+    mainGraphics.renderTexture(hangManImage, 0, 0);
 
 }
 

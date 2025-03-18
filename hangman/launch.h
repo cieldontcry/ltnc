@@ -12,6 +12,9 @@ using namespace std;
 
 void launch(){
 
+    Graphics mainGraphics;
+    mainGraphics.init();
+
     string word;
     string blankWord;
     int badGuessCount;
@@ -24,7 +27,8 @@ void launch(){
         char guess = guessWord();
         if (checkGuess(guess, word, blankWord) == 0){
             badGuessCount++;
-            draw(badGuessCount);
+            draw(badGuessCount, mainGraphics);
+            mainGraphics.presentScene();
         }
 
         else {
