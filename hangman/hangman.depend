@@ -52,11 +52,12 @@
 	"graphics.h"
 	"defs.h"
 
-1742314335 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\guess.h
+1742358284 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\guess.h
+	<string>
 
 1741988032 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\defs.h
 
-1742314430 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\launch.h
+1742316435 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\launch.h
 	<iostream>
 	"create.h"
 	"draw.h"
