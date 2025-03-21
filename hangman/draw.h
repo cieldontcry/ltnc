@@ -9,18 +9,19 @@
 
 using namespace std;
 
+//image link
 string findImage(const int badGuess){
 
     return "image\\hangman\\" + std::to_string(badGuess) + ".jpg";
 
 }
 
-void draw(const int badGuess, Graphics& mainGraphic){
+//render hangman
+void draw(const int badGuess, Graphics& mainGraphic, SDL_Texture** hangManImage){
 
-    SDL_Texture* hangManImage = mainGraphic.loadTexture(findImage(badGuess).c_str());
-    mainGraphic.renderTexture(hangManImage, 0, 0);
-    SDL_DestroyTexture(hangManImage);
-    hangManImage = NULL;
+    *hangManImage = mainGraphic.loadTexture(findImage(badGuess).c_str());
+    mainGraphic.renderTexture(*hangManImage, hangMan_x, hangMan_y, hangMan_w, hangMan_h);
+    mainGraphic.presentScene();
 
 }
 

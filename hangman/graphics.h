@@ -3,19 +3,24 @@
 
 #include<SDL.h>
 #include<SDL_image.h>
+#include<SDL_ttf.h>
+#include<string>
 #include "defs.h"
 
 struct Graphics {
 
+    //main renderer and window
     SDL_Renderer *renderer;
     SDL_Window *window;
 
+    //Message when logError
     void logErrorAndExit(const char* msg, const char* error){
         SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
                        "%s: %s", msg, error);
         SDL_Quit();
     }
 
+    //init after declare graphic
     void init() {
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
             logErrorAndExit("SDL_Init", SDL_GetError());
@@ -36,15 +41,18 @@ struct Graphics {
         SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
+    //render background
     void prepareScene(SDL_Texture * background){
         SDL_RenderClear(renderer);
         SDL_RenderCopy( renderer, background, NULL, NULL);
     }
 
+    //present the present sence
     void presentScene(){
         SDL_RenderPresent(renderer);
     }
 
+    //build texture from image
     SDL_Texture *loadTexture(const char *filename){
         SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO,
                        "Loading %s", filename);
@@ -55,20 +63,56 @@ struct Graphics {
         return texture;
     }
 
-    void renderTexture(SDL_Texture *texture, int x, int y){
+    //build texture from text
+    SDL_Texture *loadSurface(TTF_Font *Font, const char* text, SDL_Color Color){
+        cout << text <<'\n';
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO,
+                       "Loading %s", text);
+        SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
+        if (surface == NULL)
+                SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
+                               "Load surface %s", IMG_GetError());
+        SDL_Texture *message = SDL_CreateTextureFromSurface(renderer, surface);
+
+        return message;
+    }
+
+    //render texture
+    void renderTexture(SDL_Texture *texture,const int x,const int y, const int w, const int h){
         SDL_Rect dest;
         dest.x = x;
         dest.y = y;
-        SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
-        SDL_RenderCopy(renderer, texture, NULL, NULL);
+        dest.w = w;
+        dest.h = h;
+        SDL_RenderCopy(renderer, texture, NULL, &dest);
     }
 
+    // Quit SDL
     void quit(){
         IMG_Quit();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
     }
+
 };
+
+void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
+                const char* text, const int x, const int y, const int h, const int center){
+
+    SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
+    SDL_Texture *message = SDL_CreateTextureFromSurface(mainGraphic.renderer, surface);
+
+    int w= (int)((float)surface->w / (float)surface->h * h);
+
+    int col = x;
+    if (center == 1) col= (SCREEN_WIDTH-w)/2;
+
+    mainGraphic.renderTexture(message, col, y, w, h);
+
+    SDL_DestroyTexture(message);
+    message=NULL;
+
+}
 
 #endif // _GRAPHICS__H

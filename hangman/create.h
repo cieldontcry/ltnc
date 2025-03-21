@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//number lines of file
 int fileNumberOfLines(const string fileName){
 
     int number=0;
@@ -19,18 +20,19 @@ int fileNumberOfLines(const string fileName){
         getline(fin, line);
         number++;
     }
-    return number;
     fin.close();
+    return number;
 
 }
 
+//random line of file
 int rand(const int maxNum){
 
     return rand() % maxNum;
 
 }
 
-
+//get random word from fileName
 string randomWord(const string fileName){
 
     srand(time(0));
@@ -43,6 +45,7 @@ string randomWord(const string fileName){
     for (int i=0; i<wordNumber; i++){
         getline(fin, word);
     }
+    fin.close();
     return word;
 
 }

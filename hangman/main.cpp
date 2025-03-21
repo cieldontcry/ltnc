@@ -12,6 +12,7 @@ int main(int argv, char* args[]){
 
     Graphics mainGraphic;
     mainGraphic.init();
+    TTF_Init();
 
     launch(mainGraphic);
 

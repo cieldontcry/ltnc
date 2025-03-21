@@ -3,44 +3,73 @@
 
 #include <string>
 
-char guessWord(){
+//check type of char
+int type(const char chr){
+
+    if ('a'<= chr && chr<='z') return 1;
+    if ('A'<= chr && chr<='Z') return 2;
+    return 0;
+
+}
+
+//input guessWord
+char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord){
 
     string guess;
-    char *composition;
-    int cursor;
-    int selection_len;
 
     bool done = false;
 
+    //build font and color
+    TTF_Font* Sans = TTF_OpenFont("Lato-Black.ttf", 72);
+    SDL_Color White = {255,255,255};
+
     SDL_StartTextInput();
-    while(!done){
+    while(!done){                                                       //done = true -> out
         SDL_Event event;
         if (SDL_PollEvent(&event)){
 
             switch (event.type){
 
-                case SDL_TEXTINPUT:
+                case SDL_TEXTINPUT:{
+                    //text input -> guess
                     guess = event.text.text;
-                    break;
 
-                case SDL_TEXTEDITING:
-                    composition = event.edit.text;
-                    cursor = event.edit.start;
-                    selection_len = event.edit.length;
-                    break;
+                    //UPPERCASE
+                    if (type(guess[0]) == 1) guess[0]+='A'-'a';
 
+                    //clear present screen
+                    SDL_RenderClear(mainGraphic.renderer);
+
+                    // print what you input & present hangManImage what was cleared be4
+                    renderText(mainGraphic, Sans, White, blankWord.c_str(),
+                               blankWord_x, blankWord_y, blankWord_h, 1);
+                    mainGraphic.renderTexture(hangManImage, hangMan_x, hangMan_y, hangMan_w, hangMan_h);
+                    renderText(mainGraphic, Sans, White, guess.c_str(), chr_x, chr_y, chr_h, 1);
+
+                    //warning some strange char
+                    if(type(guess[0]) == 0)
+                       renderText(mainGraphic, Sans, White, warn, warn_x, warn_y, warn_h, 0);
+
+                    mainGraphic.presentScene();
+                    break;
+                }
+
+                //press ENTER to get text input and end the loop
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_RETURN) done= true;
                     break;
 
             }
+
+
         }
     }
-    cout << guess[0] << endl;
-    return guess[0];
+    //lowercase and return
+    return guess[0]-'A'+'a';
 
 }
 
+//check
 int checkGuess(const char guess, const string word, const string blankWord){
 
     for (int i=0; i<(int)word.length(); i++){
@@ -50,6 +79,7 @@ int checkGuess(const char guess, const string word, const string blankWord){
 
 }
 
+//update when guessWord correct
 void updateBlankWord(const char guess, const string word, string& blankWord){
 
     for (int i=0; i<(int)blankWord.length(); i++){
