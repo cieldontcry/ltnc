@@ -39,6 +39,7 @@
 		<Unit filename="guess.h" />
 		<Unit filename="launch.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

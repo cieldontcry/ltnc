@@ -20,7 +20,7 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
     bool done = false;
 
     //build font and color
-    TTF_Font* Sans = TTF_OpenFont("Lato-Black.ttf", 72);
+    TTF_Font* Sans = TTF_OpenFont(fontFile, fontSize);
     SDL_Color White = {255,255,255};
 
     SDL_StartTextInput();

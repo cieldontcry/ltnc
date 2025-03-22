@@ -95,6 +95,27 @@ struct Graphics {
         SDL_Quit();
     }
 
+    void pressAnyKeyToContinue(){
+
+        bool done = false;
+        while (!done){
+            SDL_Event event;
+            while (SDL_PollEvent(&event))
+                switch (event.type){
+                    case SDL_KEYDOWN:
+                        done = true;
+                        break;
+                }
+        }
+
+    }
+
+};
+
+struct rect{
+
+    int x, y, w, h;
+
 };
 
 void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
@@ -112,6 +133,32 @@ void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
 
     SDL_DestroyTexture(message);
     message=NULL;
+
+}
+
+rect textBox(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
+              const char* text, const int x, const int y, const int h, const int center){
+    SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
+
+    int w= (int)((float)surface->w / (float)surface->h * h);
+
+    int col = x;
+    if (center == 1) col= (SCREEN_WIDTH-w)/2;
+
+    rect res;
+    res.x = col;
+    res.y = y;
+    res.w = w;
+    res.h = h;
+    return res;
+
+}
+
+int checkMouse(int x, int y, rect textBox){
+
+    if (x<textBox.x || x>= textBox.x + textBox.w) return 0;
+    if (y<textBox.y || y>= textBox.y + textBox.h) return 0;
+    return 1;
 
 }
 

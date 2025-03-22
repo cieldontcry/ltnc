@@ -19,7 +19,7 @@ void launch(Graphics& mainGraphic){
     string blankWord;
     int badGuessCount = 0;
 
-    TTF_Font* Sans = TTF_OpenFont("Lato-Black.ttf", 72);
+    TTF_Font* Sans = TTF_OpenFont(fontFile, fontSize);
     SDL_Color White = {255,255,255};
 
     //creat a image with no thing
@@ -30,6 +30,8 @@ void launch(Graphics& mainGraphic){
     //creat word
     word = createWord();
     blankWord= creatBlankWord((int)word.length(), '-');
+
+    bool done = false;
 
     while (badGuessCount != 7){
 
@@ -54,13 +56,20 @@ void launch(Graphics& mainGraphic){
                        blankWord_x, blankWord_y, blankWord_h, 1);
             mainGraphic.presentScene();
             if (blankWord == word){
-                cout << "You won" <<'\n';
+                SDL_RenderClear(mainGraphic.renderer);
+                renderText(mainGraphic, Sans, White, win, 0, result_y, result_h, 1);
+                mainGraphic.presentScene();
+                mainGraphic.pressAnyKeyToContinue();
                 return;
             }
         }
 
     }
-    cout << "You lose" <<'\n';
+    SDL_RenderClear(mainGraphic.renderer);
+    renderText(mainGraphic, Sans, White, lose, 0, result_y, result_h, 1);
+    mainGraphic.presentScene();
+    mainGraphic.pressAnyKeyToContinue();
+
     cout << word <<'\n';
 
 }
