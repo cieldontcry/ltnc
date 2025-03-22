@@ -112,12 +112,14 @@ struct Graphics {
 
 };
 
+//struct textBox
 struct rect{
 
     int x, y, w, h;
 
 };
 
+//render text
 void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
                 const char* text, const int x, const int y, const int h, const int center){
 
@@ -127,6 +129,7 @@ void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
     int w= (int)((float)surface->w / (float)surface->h * h);
 
     int col = x;
+    //center = 1 -> print center
     if (center == 1) col= (SCREEN_WIDTH-w)/2;
 
     mainGraphic.renderTexture(message, col, y, w, h);
@@ -136,6 +139,7 @@ void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
 
 }
 
+//find textBox of text
 rect textBox(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
               const char* text, const int x, const int y, const int h, const int center){
     SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
@@ -154,6 +158,7 @@ rect textBox(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
 
 }
 
+//check mouse in textBox or not
 int checkMouse(int x, int y, rect textBox){
 
     if (x<textBox.x || x>= textBox.x + textBox.w) return 0;

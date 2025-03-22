@@ -49,4 +49,8 @@ const char* lose = "YOU LOSED";
 const int result_y = 250;
 const int result_h = 100;
 
+//resultWord position
+const int word_y = 375;
+const int word_h = 50;
+
 #endif // _DEFS__H

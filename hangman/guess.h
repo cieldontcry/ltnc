@@ -24,7 +24,8 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
     SDL_Color White = {255,255,255};
 
     SDL_StartTextInput();
-    while(!done){                                                       //done = true -> out
+    //done = true -> out
+    while(!done){
         SDL_Event event;
         if (SDL_PollEvent(&event)){
 
