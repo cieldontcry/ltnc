@@ -23,32 +23,30 @@ int main(int argv, char* args[]){
     SDL_Event event;
     int mouse_x, mouse_y;
 
-    renderText(mainGraphic, Sans, White, startText, 0, start_y, start_h, 1);
-    mainGraphic.presentScene();
-
     while (!done){
 
         while (SDL_PollEvent(&event)){
 
             SDL_RenderClear(mainGraphic.renderer);
+            renderText(mainGraphic, Sans, White, NAME, 0, name_y, name_h, 1);
             SDL_GetMouseState(&mouse_x, &mouse_y);
 
-            rect start = textBox(mainGraphic, Sans, White, startText, 0, start_y, start_h, 1);
-            rect menu = textBox(mainGraphic, Sans, White, menuText, 0, menu_y, menu_h, 1);
+            rect start = textBox(mainGraphic, Sans, White, START, 0, start_y, start_h, 1);
+            rect menu = textBox(mainGraphic, Sans, White, SETTING, 0, menu_y, menu_h, 1);
 
             if (checkMouse(mouse_x, mouse_y, start)){
-                renderText(mainGraphic, Sans, White, startChosed, 0, start_y, start_h, 1);
-                renderText(mainGraphic, Sans, White, menuText, 0, menu_y, menu_h, 1);
+                renderText(mainGraphic, Sans, White, STARTC, 0, start_y, start_h, 1);
+                renderText(mainGraphic, Sans, White, SETTING, 0, menu_y, menu_h, 1);
                 mainGraphic.presentScene();
             }
             else {
-                renderText(mainGraphic, Sans, White, startText, 0, start_y, start_h, 1);
+                renderText(mainGraphic, Sans, White, START, 0, start_y, start_h, 1);
                 if (checkMouse(mouse_x, mouse_y, menu)){
-                    renderText(mainGraphic, Sans, White, menuChosed, 0, menu_y, menu_h, 1);
+                    renderText(mainGraphic, Sans, White, SETTINGC, 0, menu_y, menu_h, 1);
                     mainGraphic.presentScene();
                 }
                 else {
-                    renderText(mainGraphic, Sans, White, menuText, 0, menu_y, menu_h, 1);
+                    renderText(mainGraphic, Sans, White, SETTING, 0, menu_y, menu_h, 1);
                     mainGraphic.presentScene();
                 }
             }
@@ -61,7 +59,7 @@ int main(int argv, char* args[]){
 
                 case SDL_MOUSEBUTTONDOWN:
                     if (checkMouse(mouse_x, mouse_y, start)) launch(mainGraphic);
-                    //if (checkMouse(mouse_x, mouse_y, menu))
+                    if (checkMouse(mouse_x, mouse_y, menu)) launchMenu(mainGraphic);
 
             }
 

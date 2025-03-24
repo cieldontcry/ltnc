@@ -49,7 +49,7 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
 
                     //warning some strange char
                     if(type(guess[0]) == 0)
-                       renderText(mainGraphic, Sans, White, warn, warn_x, warn_y, warn_h, 0);
+                       renderText(mainGraphic, Sans, White, WARN, warn_x, warn_y, warn_h, 0);
 
                     mainGraphic.presentScene();
                     break;
