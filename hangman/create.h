@@ -11,57 +11,16 @@
 using namespace std;
 
 //number lines of file
-int fileNumberOfLines(const string fileName){
-
-    int number=0;
-    ifstream fin(fileName);
-    while (!fin.eof()){
-        string line;
-        getline(fin, line);
-        number++;
-    }
-    fin.close();
-    return number;
-
-}
+int fileNumberOfLines(const string fileName);
 
 //random line of file
-int rand(const int maxNum){
-
-    return rand() % maxNum;
-
-}
+int rand(const int maxNum);
 
 //get random word from fileName
-string randomWord(const string fileName){
+string randomWord(const string fileName);
 
-    srand(time(0));
-    int maxNum= fileNumberOfLines(fileName);
-    int wordNumber = rand(maxNum);
+string createWord();
 
-    ifstream fin(fileName);
-    string word;
-
-    for (int i=0; i<wordNumber; i++){
-        getline(fin, word);
-    }
-    fin.close();
-    return word;
-
-}
-
-string createWord(){
-
-    return randomWord(FILE);
-
-}
-
-string creatBlankWord(const int a, const char c){
-
-    string res ="";
-    for (int i=0; i<a; i++) res= res+c;
-    return res;
-
-}
+string creatBlankWord(const int a, const char c);
 
 #endif // _CREATE__H

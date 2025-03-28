@@ -14,101 +14,29 @@ struct Graphics {
     SDL_Window *window;
 
     //Message when logError
-    void logErrorAndExit(const char* msg, const char* error){
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
-                       "%s: %s", msg, error);
-        SDL_Quit();
-    }
+    void logErrorAndExit(const char* msg, const char* error);
 
     //init after declare graphic
-    void init() {
-        if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-            logErrorAndExit("SDL_Init", SDL_GetError());
-        window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED,
-                                  SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,
-                                  SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (window == nullptr)
-            logErrorAndExit("CreateWindow", SDL_GetError());
-        if (!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
-            logErrorAndExit( "SDL_image error:", IMG_GetError());
-        renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_ACCELERATED |
-                                      SDL_RENDERER_PRESENTVSYNC);
-        //renderer =
-            SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
-        if (renderer == nullptr)
-            logErrorAndExit("CreateRenderer", SDL_GetError());
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-        SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
-    }
+    void init();
 
     //render background
-    void prepareScene(SDL_Texture * background){
-        SDL_RenderClear(renderer);
-        SDL_RenderCopy( renderer, background, NULL, NULL);
-    }
+    void prepareScene(SDL_Texture * background);
 
     //present the present sence
-    void presentScene(){
-        SDL_RenderPresent(renderer);
-    }
-
+    void presentScene();
     //build texture from image
-    SDL_Texture *loadTexture(const char *filename){
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO,
-                       "Loading %s", filename);
-        SDL_Texture *texture = IMG_LoadTexture(renderer, filename);
-        if (texture == NULL)
-                SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
-                               "Load texture %s", IMG_GetError());
-        return texture;
-    }
+    SDL_Texture *loadTexture(const char *filename);
 
     //build texture from text
-    SDL_Texture *loadSurface(TTF_Font *Font, const char* text, SDL_Color Color){
-        cout << text <<'\n';
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO,
-                       "Loading %s", text);
-        SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
-        if (surface == NULL)
-                SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,
-                               "Load surface %s", IMG_GetError());
-        SDL_Texture *message = SDL_CreateTextureFromSurface(renderer, surface);
-
-        return message;
-    }
+    SDL_Texture *loadSurface(TTF_Font *Font, const char* text, SDL_Color Color);
 
     //render texture
-    void renderTexture(SDL_Texture *texture,const int x,const int y, const int w, const int h){
-        SDL_Rect dest;
-        dest.x = x;
-        dest.y = y;
-        dest.w = w;
-        dest.h = h;
-        SDL_RenderCopy(renderer, texture, NULL, &dest);
-    }
+    void renderTexture(SDL_Texture *texture,const int x,const int y, const int w, const int h);
 
     // Quit SDL
-    void quit(){
-        IMG_Quit();
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-    }
+    void quit();
 
-    void pressAnyKeyToContinue(){
-
-        bool done = false;
-        while (!done){
-            SDL_Event event;
-            while (SDL_PollEvent(&event))
-                switch (event.type){
-                    case SDL_KEYDOWN:
-                        done = true;
-                        break;
-                }
-        }
-
-    }
+    void pressAnyKeyToContinue();
 
 };
 
@@ -121,50 +49,13 @@ struct rect{
 
 //render text
 void renderText(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
-                const char* text, const int x, const int y, const int h, const int center){
-
-    SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
-    SDL_Texture *message = SDL_CreateTextureFromSurface(mainGraphic.renderer, surface);
-
-    int w= (int)((float)surface->w / (float)surface->h * h);
-
-    int col = x;
-    //center = 1 -> print center
-    if (center == 1) col= (SCREEN_WIDTH-w)/2;
-
-    mainGraphic.renderTexture(message, col, y, w, h);
-
-    SDL_DestroyTexture(message);
-    message=NULL;
-
-}
+                const char* text, const int x, const int y, const int h, const int center);
 
 //find textBox of text
 rect textBox(Graphics mainGraphic, TTF_Font* Font, SDL_Color Color,
-              const char* text, const int x, const int y, const int h, const int center){
-    SDL_Surface *surface = TTF_RenderText_Solid(Font, text, Color);
-
-    int w= (int)((float)surface->w / (float)surface->h * h);
-
-    int col = x;
-    if (center == 1) col= (SCREEN_WIDTH-w)/2;
-
-    rect res;
-    res.x = col;
-    res.y = y;
-    res.w = w;
-    res.h = h;
-    return res;
-
-}
+              const char* text, const int x, const int y, const int h, const int center);
 
 //check mouse in textBox or not
-int checkMouse(int x, int y, rect textBox){
-
-    if (x<textBox.x || x>= textBox.x + textBox.w) return 0;
-    if (y<textBox.y || y>= textBox.y + textBox.h) return 0;
-    return 1;
-
-}
+int checkMouse(int x, int y, rect textBox);
 
 #endif // _GRAPHICS__H

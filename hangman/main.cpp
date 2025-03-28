@@ -1,10 +1,5 @@
 #include<iostream>
-#include "create.h"
-#include "draw.h"
-#include "guess.h"
-#include "defs.h"
 #include "launch.h"
-#include "graphics.h"
 #include "menu.h"
 
 using namespace std;
@@ -58,7 +53,7 @@ int main(int argv, char* args[]){
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:
-                    if (checkMouse(mouse_x, mouse_y, start)) launch(mainGraphic);
+                    if (checkMouse(mouse_x, mouse_y, start)) launch(mainGraphic, done);
                     if (checkMouse(mouse_x, mouse_y, menu)) launchMenu(mainGraphic);
 
             }
