@@ -74,6 +74,9 @@ int main(int argv, char* args[]){
 
     //launch(mainGraphic);
 
+    Mix_FreeMusic(backGroundMusic);
+    backGroundMusic = NULL;
+
     Mix_CloseAudio();
     Mix_Quit();
     TTF_Quit();
