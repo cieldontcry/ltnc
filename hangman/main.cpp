@@ -9,6 +9,9 @@ int main(int argv, char* args[]){
     Graphics mainGraphic;
     mainGraphic.init();
     TTF_Init();
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
+        mainGraphic.logErrorAndExit( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+    }
 
     bool done = false;
 
@@ -65,6 +68,9 @@ int main(int argv, char* args[]){
 
     //launch(mainGraphic);
 
+    Mix_CloseAudio();
+    Mix_Quit();
+    TTF_Quit();
     mainGraphic.quit();
 
     return 0;

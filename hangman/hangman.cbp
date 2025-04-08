@@ -35,8 +35,11 @@
 		<Unit filename="create.cpp" />
 		<Unit filename="create.h" />
 		<Unit filename="defs.h" />
+		<Unit filename="draw.cpp" />
 		<Unit filename="draw.h" />
+		<Unit filename="graphics.cpp" />
 		<Unit filename="graphics.h" />
+		<Unit filename="guess.cpp" />
 		<Unit filename="guess.h" />
 		<Unit filename="launch.cpp" />
 		<Unit filename="launch.h" />

@@ -4,6 +4,7 @@
 #include<SDL.h>
 #include<SDL_image.h>
 #include<SDL_ttf.h>
+#include<SDL_mixer.h>
 #include<string>
 #include "defs.h"
 
@@ -37,6 +38,14 @@ struct Graphics {
     void quit();
 
     void pressAnyKeyToContinue();
+
+    Mix_Music *loadMusic(const char* path);
+
+    void play(Mix_Music *gMusic);
+
+    Mix_Chunk* loadSound(const char* path);
+
+    void play(Mix_Chunk* gChunk);
 
 };
 

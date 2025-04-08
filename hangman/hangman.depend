@@ -31,7 +31,7 @@
 	<SDL_image.h>
 	"defs.h"
 
-1743171277 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\main.cpp
+1744081427 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\main.cpp
 	<iostream>
 	"launch.h"
 	"menu.h"
@@ -51,17 +51,18 @@
 	<string>
 	"draw.h"
 
-1743173882 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\defs.h
+1744080986 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\defs.h
 
 1743172307 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\launch.h
 	<iostream>
 	"create.h"
 	"guess.h"
 
-1743173190 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\graphics.h
+1744082724 c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
+	<SDL_mixer.h>
 	<string>
 	"defs.h"
 
@@ -76,9 +77,9 @@
 1743173862 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\guess.cpp
 	"guess.h"
 
-1743172906 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\draw.cpp
+1744012802 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\draw.cpp
 	"draw.h"
 
-1743173651 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\graphics.cpp
+1744082464 source:c:\users\admin\onedrive - vnu.edu.vn\desktop\kien\uet\2024-2025\ii\ltnc\code\ltnc\hangman\graphics.cpp
 	"graphics.h"
 

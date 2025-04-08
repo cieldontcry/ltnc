@@ -3,7 +3,7 @@
 //image link
 string findImage(const int badGuess){
 
-    return "image\\hangman\\" + std::to_string(badGuess) + ".jpg";
+    return "image\\hangman\\" + std::to_string(badGuess) + ".png";
 
 }
 
