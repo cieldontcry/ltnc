@@ -10,11 +10,11 @@ int type(const char chr){
 }
 
 //input guessWord
-char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord, bool& check){
+char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord, bool& done){
 
     string guess;
 
-    bool done = false;
+    bool check = false;
 
     //build font and color
     TTF_Font* Sans = TTF_OpenFont(fontFile, fontSize);
@@ -22,7 +22,7 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
 
     SDL_StartTextInput();
     //done = true -> out
-    while(!done){
+    while(!check){
         SDL_Event event;
         if (SDL_PollEvent(&event)){
 
@@ -31,6 +31,8 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
                 case SDL_TEXTINPUT:{
                     //text input -> guess
                     guess = event.text.text;
+//                    Mix_Chunk* textChange = mainGraphic.loadSound(TEXTCHANGE);
+//                    mainGraphic.play(textChange);
 
                     //UPPERCASE
                     if (type(guess[0]) == 1) guess[0]+='A'-'a';
@@ -54,7 +56,7 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
 
                 //press ENTER to get text input and end the loop
                 case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_RETURN) done= true;
+                    if (event.key.keysym.sym == SDLK_RETURN) check= true;
                     break;
 
                 //press X in the window to turn off the game

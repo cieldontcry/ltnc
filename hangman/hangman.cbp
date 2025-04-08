@@ -44,6 +44,7 @@
 		<Unit filename="launch.cpp" />
 		<Unit filename="launch.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.cpp" />
 		<Unit filename="menu.h" />
 		<Extensions />
 	</Project>

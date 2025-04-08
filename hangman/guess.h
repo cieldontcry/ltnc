@@ -10,7 +10,7 @@ using namespace std;
 int type(const char chr);
 
 //input guessWord
-char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord, bool& check);
+char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord, bool& done);
 
 //check
 int checkGuess(const char guess, const string word, const string blankWord);

@@ -58,4 +58,27 @@ const int word_h = 50;
 const int name_y = 250;
 const int name_h = 100;
 
+//music
+#define BACKGROUNDMUSIC "music\\background.mp3"
+#define TEXTCHANGE "music\\textchange.mp3"
+
+//volume
+#define VOLUMEBLACK "image\\volume\\volumebar0.png"
+#define VOLUMEWHITE "image\\volume\\volumebar.png"
+const int volume_x = 200;
+const int volume_y = 200;
+const int volume_w = 600;
+const int volume_h = 25;
+
+//ACCEPT VOLUME
+#define OK "OK"
+#define CHOSENOK ">OK"
+const int ok_y = 400;
+const int ok_h = 50;
+
+//VOLUME
+#define TEXTVOLUME "Volume"
+const int textVolume_y = 125;
+const int textVolume_h = 50;
+
 #endif // _DEFS__H

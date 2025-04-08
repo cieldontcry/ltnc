@@ -13,6 +13,10 @@ int main(int argv, char* args[]){
         mainGraphic.logErrorAndExit( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
     }
 
+    Mix_Music* backGroundMusic = mainGraphic.loadMusic(BACKGROUNDMUSIC);
+    mainGraphic.play(backGroundMusic);
+    int volume=128;
+
     bool done = false;
 
     TTF_Font* Sans = TTF_OpenFont(fontFile, fontSize);
@@ -57,7 +61,10 @@ int main(int argv, char* args[]){
 
                 case SDL_MOUSEBUTTONDOWN:
                     if (checkMouse(mouse_x, mouse_y, start)) launch(mainGraphic, done);
-                    if (checkMouse(mouse_x, mouse_y, menu)) launchMenu(mainGraphic);
+                    if (checkMouse(mouse_x, mouse_y, menu)){
+                        launchMenu(mainGraphic, done, volume);
+                        int temp = Mix_VolumeMusic(volume);
+                    }
 
             }
 
