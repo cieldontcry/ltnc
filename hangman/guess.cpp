@@ -31,8 +31,6 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
                 case SDL_TEXTINPUT:{
                     //text input -> guess
                     guess = event.text.text;
-//                    Mix_Chunk* textChange = mainGraphic.loadSound(TEXTCHANGE);
-//                    mainGraphic.play(textChange);
 
                     //UPPERCASE
                     if (type(guess[0]) == 1) guess[0]+='A'-'a';
@@ -48,7 +46,7 @@ char guessWord(Graphics mainGraphic, SDL_Texture* hangManImage, string blankWord
 
                     //warning some strange char
                     if(type(guess[0]) == 0)
-                       renderText(mainGraphic, Sans, White, WARN.c_str(), warn_x, warn_y, warn_h, 0);
+                       renderText(mainGraphic, Sans, White, WARN, warn_x, warn_y, warn_h, 0);
 
                     mainGraphic.presentScene();
                     break;

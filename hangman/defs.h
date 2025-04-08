@@ -12,7 +12,7 @@ const int hangMan_w = 200;
 const int hangMan_h = 350;
 
 //warning position
-#define WARN "Warning: Turn off Vietkey"s
+#define WARN "Warning: Turn off Vietkey"
 const int warn_x = 0;
 const int warn_y = 0;
 const int warn_h = 25;

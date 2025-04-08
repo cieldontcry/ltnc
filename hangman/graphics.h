@@ -39,12 +39,12 @@ struct Graphics {
 
     void pressAnyKeyToContinue();
 
+    //music
     Mix_Music *loadMusic(const char* path);
-
     void play(Mix_Music *gMusic);
 
+    //sound effect
     Mix_Chunk* loadSound(const char* path);
-
     void play(Mix_Chunk* gChunk);
 
 };

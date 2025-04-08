@@ -77,6 +77,11 @@ void launchMenu(Graphics& mainGraphic, bool& done, int& volume){
 
     }
 
+    SDL_DestroyTexture(volumeBarBlack);
+    volumeBarBlack = NULL;
+    SDL_DestroyTexture(volumeBarWhite);
+    volumeBarWhite = NULL;
+
     volume = (int) (tempVolume *128 / volume_w);
 
 }

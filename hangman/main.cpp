@@ -63,13 +63,12 @@ int main(int argv, char* args[]){
                     if (checkMouse(mouse_x, mouse_y, start)) launch(mainGraphic, done);
                     if (checkMouse(mouse_x, mouse_y, menu)){
                         launchMenu(mainGraphic, done, volume);
-                        int temp = Mix_VolumeMusic(volume);
+                        Mix_VolumeMusic(volume);
                     }
 
             }
 
         }
-
 
     }
 
